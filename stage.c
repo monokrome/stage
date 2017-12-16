@@ -58,7 +58,8 @@ char *getMonitorFingerprint(XRRMonitorInfo *monitor) {
 		monitor->height
 	);
 
-	fingerprint = calloc(length, sizeof(char));
+	// Add an additional character for NULL byte \0
+	fingerprint = calloc(length+1, sizeof(char));
 	checkAlloc(fingerprint);
 
 	if (length != snprintf(fingerprint, length, FINGERPRINT_FORMAT, name, monitors[0].width, monitors[0].height))
